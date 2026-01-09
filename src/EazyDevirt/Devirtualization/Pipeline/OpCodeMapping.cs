@@ -195,7 +195,10 @@ internal class OpCodeMapping : StageBase
             Ctx.Console.InfoStr($"VM opcodes identified ({identified / vmOpCodes.Count:P})", identified);
 
         if (Ctx.Options.VeryVeryVerbose)
-                Ctx.Console.InfoStr($"Unidentified opcode patterns: {string.Join(", ", Ctx.PatternMatcher.OpCodePatterns.Select(x => x.IsSpecial ? x.SpecialOpCode.ToString() : x.CilOpCode.ToString()))}", Ctx.PatternMatcher.OpCodePatterns.Count);
+        {
+            var unidentifiedPatterns = Ctx.PatternMatcher.OpCodePatterns.Where(x => !x.AllowMultiple).ToList();
+            Ctx.Console.InfoStr($"Unidentified opcode patterns (excluding AllowMultiple): {string.Join(", ", unidentifiedPatterns.Select(x => x.IsSpecial ? x.SpecialOpCode.ToString() : x.CilOpCode.ToString()))}", unidentifiedPatterns.Count);
+        }
 
         return true;
     }
