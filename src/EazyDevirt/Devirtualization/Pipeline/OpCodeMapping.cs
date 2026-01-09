@@ -109,7 +109,7 @@ internal class OpCodeMapping : StageBase
         {
             var instructionField = op[2].Operand as SerializedFieldDefinition;
             var instructionField2 = op[7].Operand as SerializedFieldDefinition;
-            var opCodeDelegate = op[9].Operand as SerializedMethodDefinition;
+            var opCodeDelegate = op[13].Operand as SerializedMethodDefinition;
             // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
             containerType ??= instructionField!.DeclaringType!;
             
