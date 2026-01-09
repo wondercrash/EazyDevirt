@@ -1,5 +1,6 @@
 ﻿using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
+using EazyDevirt.Devirtualization;
 
 namespace EazyDevirt.Util;
 
@@ -42,7 +43,7 @@ public class TypeSigVisitor : ITypeSignatureVisitor<TypeSignature>
             if (signature.ModifierType.Resolve() is { } typeDef)
                 signature.ModifierType = typeDef;
             else
-                throw new Exception($"Failed to resolve CustomModifierTypeSignature {signature} to typedef.");
+                DevirtualizationContext.Instance.Console.Error($"Failed to resolve CustomModifierTypeSignature {signature} to typedef.");
         }
         
         signature.BaseType.AcceptVisitor(this);
@@ -56,7 +57,7 @@ public class TypeSigVisitor : ITypeSignatureVisitor<TypeSignature>
             if (signature.GenericType.Resolve() is { } typeDef)
                 signature.GenericType = typeDef;
             else
-                throw new Exception($"Failed to resolve GenericInstanceTypeSignature {signature} to typedef.");
+                DevirtualizationContext.Instance.Console.Error($"Failed to resolve GenericInstanceTypeSignature {signature} to typedef.");
         }
         
         foreach (var typeArgument in signature.TypeArguments)
@@ -103,7 +104,7 @@ public class TypeSigVisitor : ITypeSignatureVisitor<TypeSignature>
         if (signature.Type.Resolve() is { } typeDef)
             signature.Type = typeDef;
         else
-            throw new Exception($"Failed to resolve TypeDefOrRefSignature {signature} to typedef.");
+            DevirtualizationContext.Instance.Console.Error($"Failed to resolve TypeDefOrRefSignature {signature} to typedef.");
 
         return signature;
     }
