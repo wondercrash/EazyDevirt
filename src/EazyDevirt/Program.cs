@@ -10,8 +10,8 @@ namespace EazyDevirt;
 
 internal static class Program
 {
-    private static readonly Version CurrentVersion = new("1.0.0");
-    private static readonly Version CurrentEazVersion = new("2022.2.763.35371");
+    private static readonly Version CurrentVersion = new("2.0.0");
+    private static readonly Version CurrentEazVersion = new("2025.3.195.25680");
 
     private static async Task Main(params string[] args)
     {
