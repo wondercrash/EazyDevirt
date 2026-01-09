@@ -193,7 +193,10 @@ internal class OpCodeMapping : StageBase
         
         if (Ctx.Options.VeryVerbose)
             Ctx.Console.InfoStr($"VM opcodes identified ({identified / vmOpCodes.Count:P})", identified);
-                
+
+        if (Ctx.Options.VeryVeryVerbose)
+                Ctx.Console.InfoStr($"Unidentified opcode patterns: {string.Join(", ", Ctx.PatternMatcher.OpCodePatterns.Select(x => x.IsSpecial ? x.SpecialOpCode.ToString() : x.CilOpCode.ToString()))}", Ctx.PatternMatcher.OpCodePatterns.Count);
+
         return true;
     }
 
