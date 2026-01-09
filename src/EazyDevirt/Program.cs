@@ -18,8 +18,6 @@ internal static class Program
         var parser = BuildParser();
 
         await parser.InvokeAsync(args).ConfigureAwait(false);
-
-        Console.ReadLine();
     }
 
     private static void Run(DevirtualizationOptions options)
